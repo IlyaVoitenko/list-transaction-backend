@@ -7,13 +7,14 @@ const { SECRET_KEY } = process.env;
 const authenticate = async (req, res, next) => {
   const { authorization = "" } = req.headers;
   const [bearer, token] = authorization.split(" ");
+  console.log("token :", token);
   if (bearer !== "Bearer") {
     return next(HttpError(401));
   }
   try {
-    const { id } = jwt.sign(token, SECRET_KEY);
+    const { id } = jwt.verify(token, SECRET_KEY);
     const employee = await Employees.findById(id);
-    if (!employee) next(HttpError(401));
+    if (!employee || !employee.token) next(HttpError(401));
     req.employee = employee;
     next();
   } catch (error) {

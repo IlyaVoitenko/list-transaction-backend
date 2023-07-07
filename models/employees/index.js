@@ -1,6 +1,8 @@
 const { Schema, model } = require("mongoose");
 const { handleMongooseError } = require("../../utils");
 
+const employeeRoles = ["manager", "operator", "admin"];
+
 const shemaEmployees = new Schema({
   login: {
     type: String,
@@ -12,6 +14,7 @@ const shemaEmployees = new Schema({
   },
   role: {
     type: String,
+    enum: employeeRoles,
     require: true,
   },
   token: { type: String, require: true, default: "" },
