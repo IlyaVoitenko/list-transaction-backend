@@ -49,7 +49,7 @@ const login = async (req, res) => {
   res.status(201).json({
     employee: {
       id: employee.id,
-      token: employee.token,
+      token: token,
       role: employee.role,
       login: employee.login,
       password: employee.password,

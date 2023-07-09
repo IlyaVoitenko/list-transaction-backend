@@ -5,7 +5,7 @@ const {
   registerEmployeeShema,
   loginEmployeeShema,
 } = require("../../joi/employees");
-const { register, login, logout } = require("../../controllers/authEmployees");
+const { login, register, logout } = require("../../controllers/authEmployees");
 
 const router = express.Router();
 
