@@ -28,7 +28,15 @@ const shemaClients = new Schema(
       type: String,
       require: true,
     },
-    avavarUrl: {
+    numberPassport: {
+      type: String,
+      require: true,
+    },
+    adress: {
+      type: String,
+      require: true,
+    },
+    avatarUrl: {
       type: String,
     },
   },

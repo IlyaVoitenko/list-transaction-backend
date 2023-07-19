@@ -3,13 +3,13 @@ const { handleMongooseError } = require("../../utils");
 
 const shemaTransactions = new Schema(
   {
-    sendDate: {
-      type: Date,
-      require: true,
-    },
     dateReceiving: {
       type: Date,
-      require: true,
+      default: "",
+    },
+    isGot: {
+      type: Boolean,
+      default: false,
     },
     fromPlace: {
       type: String,
@@ -19,11 +19,11 @@ const shemaTransactions = new Schema(
       type: String,
       require: true,
     },
-    sender: {
+    addressee: {
       type: String,
       require: true,
     },
-    addressee: {
+    sender: {
       type: String,
       require: true,
     },

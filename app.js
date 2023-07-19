@@ -9,6 +9,7 @@ app.use(express.json());
 
 const routerAuth = require("./routes/auth");
 const routerClients = require("./routes/clients");
+const routerTrans = require("./routes/transactions");
 
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 
@@ -16,6 +17,7 @@ app.use(logger(formatsLogger));
 
 app.use("/api/auth", routerAuth);
 app.use("/api/clients", routerClients);
+app.use("/api/transactions", routerTrans);
 
 app.use((req, res) => {
   res.status(404).json({ message: "Not found" });
