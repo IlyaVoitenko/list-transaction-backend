@@ -11,7 +11,6 @@ const getAllTransactions = async (req, res) => {
 };
 const getClientTransactions = async (req, res) => {
   const { numberPhoneClient } = req.params;
-  console.log(numberPhoneClient);
   const client = await Clients.findOne({ numberPhone: numberPhoneClient });
   if (!client) throw HttpError(404);
   const { _id: owner } = client;
@@ -20,7 +19,6 @@ const getClientTransactions = async (req, res) => {
 
   res.json({ clientTransactions });
 };
-
 const addTransaction = async (req, res) => {
   const { numberPhoneClient } = req.params;
   console.log(numberPhoneClient);
@@ -32,8 +30,15 @@ const addTransaction = async (req, res) => {
   if (!newTransacton) throw HttpError(400);
   res.json({ newTransacton });
 };
+const getDetailTransaction = async (req, res) => {
+  const { id: _id } = req.params;
+  const transaction = await Trans.findOne({ _id });
+  if (!transaction) throw HttpError(404);
+  res.json({ transaction });
+};
 module.exports = {
-  getAllTransactions: ctrlWrapper(getAllTransactions),
   addTransaction: ctrlWrapper(addTransaction),
+  getAllTransactions: ctrlWrapper(getAllTransactions),
+  getDetailTransaction: ctrlWrapper(getDetailTransaction),
   getClientTransactions: ctrlWrapper(getClientTransactions),
 };

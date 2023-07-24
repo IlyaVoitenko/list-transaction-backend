@@ -4,6 +4,7 @@ const { authenticate } = require("../../middlewares");
 const { addTransactonShema } = require("../../joi/transactions");
 const {
   getClientTransactions,
+  getDetailTransaction,
   getAllTransactions,
   addTransaction,
 } = require("../../controllers/transactions");
@@ -17,9 +18,8 @@ router.post(
   validateBody(addTransactonShema),
   addTransaction
 );
-
 router.get("/", getAllTransactions);
-
 router.get("/client/:numberPhoneClient", getClientTransactions);
+router.get("/:id", getDetailTransaction);
 
 module.exports = router;
